@@ -1,2 +1,2 @@
-.expo/
-api/client/
+.env
+node_modules/
