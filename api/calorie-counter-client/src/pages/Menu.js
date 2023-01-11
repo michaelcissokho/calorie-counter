@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import {addToMenu, deleteFromMenu, getMenu} from '../actions/menuActions';
-import _, { isEqual } from 'lodash';
+import {addToMenu, getMenu} from '../actions/menuActions';
+import { isEqual } from 'lodash';
+import MenuItem from '../components/MenuItem';
 
 const AddItemForm = styled.form`
     justify-content: center;
@@ -45,34 +46,21 @@ const Menu = () => {
         )
     }
 
-    const deleteItem = (id) => {
-        dispatch(deleteFromMenu(id))
-    }
-
     const submitForm = (e) => {
         e.preventDefault()
         dispatch(addToMenu(formData))
         setFormData(INITIAL_STATE)
         setWriting(false)
     }
-
     return (
         <div>
             <h3> Menu:</h3>
-            <MenuList style={{ listStyle: "none" }}>
-                {menu.map(item => <li key={item._id}>
-                        Name: {item.name} (per {item.unit}) <br></br> 
-                        Calories: {item.calories} <br></br> 
-                        Protein: {item.protein} <br></br> 
-                        Carbs: {item.carbs} <br></br>
-                        <button> Edit </button> 
-                        <button onClick={() => deleteItem(item._id)}> Delete </button>
-                    </li>)}
+            <MenuList>
+                {menu.map(item => <MenuItem key={item._id} item={item}/>)}
             </MenuList>
             <br></br>
             
-            {!writing && <button onClick={() => setWriting(true)}> Add Item </button>}
-            
+            {!writing && <button onClick={() => setWriting(true)}> Add Item </button>}         
 
             {writing && <AddItemForm onSubmit={submitForm}>
                 <FormLabel>Name:</FormLabel>

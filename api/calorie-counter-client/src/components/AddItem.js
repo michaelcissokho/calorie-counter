@@ -3,8 +3,10 @@ import {v4 as uuid} from 'uuid';
 import {useDispatch, useSelector} from 'react-redux';
 import {addToSummary} from '../actions/summaryActions';
 import {addItem} from '../actions/mealActions';
-import {getMenu} from '../actions/menuActions';
-import styled from 'styled-components'
+import {getMenu, changeFoodItem} from '../actions/menuActions';
+import styled from 'styled-components';
+import { isEqual } from 'lodash';
+
 
 const Form = styled.form`
     display: flex;
@@ -22,43 +24,47 @@ const FoodItemUnit = styled.div`
 `;
 
 const AddItem = () => {
-    const {menu} = useSelector(state => state.menu)
-    const [foodItem, setFoodItem] = useState({})
-    const [weight, setWeight] = useState(0)
+    const {menu, foodItem} = useSelector(state => state.menu, isEqual)
+    // const [foodItem, setFoodItem] = useState({})
+    const [serving, setServing] = useState(0)
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(getMenu())
     },[dispatch])
 
+    const roundTwoDigits = (value) => {
+        return Math.round(value * 100)/100
+    }
+
     const addAnItem = (e) => {
         e.preventDefault()
-        const form = document.querySelector('form') //I think you can delete this later
-        const item = JSON.parse(document.getElementById('menu').value)
-        const id = uuid()
-        const i = {'name': item.name, 'calories': item.calories * weight, 'protein': item.protein * weight, 'carbs': item.carbs * weight, id}
+
+        const {name, calories, protein, carbs, unit } = foodItem
+        const i = {'item': name, 'calories': roundTwoDigits(calories*serving), 'protein': roundTwoDigits(protein*serving), 'carbs': roundTwoDigits(carbs*serving), unit, serving, id: foodItem._id}
         
         dispatch(addToSummary(i));
         dispatch(addItem(i));
 
-        form.reset()
-        setWeight(0) 
+        document.querySelector('form').reset()
+        setServing(0) 
     }
 
     const handleFoodFilter = (e) => {
-        setFoodItem(JSON.parse(e.target.value))
+        // setFoodItem(JSON.parse(e.target.value))
+        dispatch(changeFoodItem(JSON.parse(e.target.value)))
     }
 
     return(
         <Form onSubmit={addAnItem}>
-            <select id="menu" onChange={handleFoodFilter}>
+            <select onChange={handleFoodFilter}>
                 {/* <option selected disabled>Select An Item</option> */}
                 {menu.map(food => (
                     <option key={food._id} value={JSON.stringify(food)}> {food.name} </option>
                 ))}
             </select>
 
-            <input id="weight" placeholder="0" onChange={(e) => setWeight(e.target.value)}/>
+            <input placeholder="0" onChange={(e) => setServing(e.target.value)}/>
             <FoodItemUnit> {foodItem.unit} </FoodItemUnit>
             <Button> Add Item </Button>
         </Form>

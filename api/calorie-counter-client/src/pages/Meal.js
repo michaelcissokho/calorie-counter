@@ -1,8 +1,9 @@
 import React from 'react';
-import FoodItem from '../components/FoodItem'
+import MealItem from '../components/MealItem'
 import AddItem from '../components/AddItem'
 import {useSelector} from 'react-redux';
 import styled from 'styled-components';
+import axios from 'axios';
 
 const Button = styled.button`
     margin-top: 25px;
@@ -13,7 +14,12 @@ const Meal = () => {
     const {meal} = useSelector(state => state.meal);
 
     const saveMeal = async (e) => {
-        // await axios.post("http://localhost:5000/meals/", {summary: meal})
+        try {
+            await axios.post("http://localhost:5000/meals/", {items: meal})
+            alert('Meal Saved')
+        } catch (err) {
+            alert('Problem Saving Meal')
+        }
     }
     
     return(
@@ -23,7 +29,7 @@ const Meal = () => {
             <div>
                 <h4>Items:</h4>
                 <ul style={{listStyle: "none"}}>
-                    {meal.map((item) => <FoodItem key={item.id} item={item} />)}
+                    {meal.map((item) => <MealItem key={item.id} item={item} />)}
                 </ul>
             </div>
             
