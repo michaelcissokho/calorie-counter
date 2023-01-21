@@ -1,7 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import {useDispatch} from 'react-redux';
 import { deleteMealFromHistory } from '../actions/savedMealActions';
+import { inductSavedMeal } from '../actions/mealActions';
+import { inductSavedSummary } from '../actions/summaryActions';
 
 const MealDiv = styled.div`
     margin: auto;
@@ -18,7 +21,16 @@ const ItemList = styled.div`
 `;
 
 const SavedMeal = ({meal}) => {
+    
+    const navigate = useNavigate()
+
     const dispatch = useDispatch()
+
+    const editSavedMeal = () => {
+        dispatch(inductSavedMeal(meal.items))
+        dispatch(inductSavedSummary(meal.summary[0]))
+        navigate('/')
+    }
 
     return (
         <MealDiv>
@@ -42,7 +54,7 @@ const SavedMeal = ({meal}) => {
             <br></br>
 
             <h5> Last Updated: {meal.updatedAt} </h5>
-            <button>Edit</button>
+            <button onClick={editSavedMeal}>Edit</button>
             <button style={{marginBottom: '10px'}} onClick={() => dispatch(deleteMealFromHistory(meal._id))}>Delete</button>
         </MealDiv>
     )

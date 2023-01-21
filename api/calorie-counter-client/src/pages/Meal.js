@@ -35,9 +35,9 @@ const Meal = () => {
             
             <div>
                 <h4>Summary:</h4>
-                <p>Calories:  {calories}</p>
-                <p>Protein: {protein} g</p>
-                <p>Carbs: {carbs} g</p>
+                <p>Calories:  {Math.round(calories)}</p>
+                <p>Protein: {Math.round(protein)} g</p>
+                <p>Carbs: {Math.round(carbs)} g</p>
             </div>
             <Button onClick={saveMeal}>Save Meal</Button>
         </div>

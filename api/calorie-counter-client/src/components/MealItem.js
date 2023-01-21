@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {useDispatch} from 'react-redux';
 import {removeFromSummary} from '../actions/summaryActions';
-import {removeItem} from '../actions/mealActions';
+import {removeItem, generateBaseItem} from '../actions/mealActions';
 import styled from 'styled-components';
 import EditMealItem from './EditMealItem';
 
@@ -11,14 +11,13 @@ const EditButton = styled.button`
 
 const MealItem = ({item}) => {
     const [editing, setEditing] = useState(false)
-    const dispatch = useDispatch()
-        
-    const editItem = () => {
-        
-    }
+    console.log(item)
 
-    const cancelEdit = () => {
-        setEditing(false)
+    const dispatch = useDispatch()
+
+    const editItem = () => {
+        dispatch(generateBaseItem(item.id))
+        setEditing(true)
     }
 
     const deleteItem = (id) => {
@@ -28,10 +27,10 @@ const MealItem = ({item}) => {
 
     return(
         <div>
-            {editing ? <EditMealItem item={item} cancelEdit={cancelEdit}/> 
+            {editing ? <EditMealItem weight={item.serving} oldItem ={item} setEditing={setEditing}/> 
             :<li> 
                 {item.item} ({item.serving} {item.unit}) ---- calories: {Math.round(item.calories)}, protein: {Math.round(item.protein)}g, carbs: {Math.round(item.carbs)}g
-                {/* <EditButton onClick={() => setEditing(true)}> Edit </EditButton> */}
+                <EditButton onClick={editItem}> Edit </EditButton>
                 <button  onClick={() => deleteItem(item.id)}> Delete </button>
             </li>}
         </div>

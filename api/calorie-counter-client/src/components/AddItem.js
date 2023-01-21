@@ -25,7 +25,6 @@ const FoodItemUnit = styled.div`
 
 const AddItem = () => {
     const {menu, foodItem} = useSelector(state => state.menu, isEqual)
-    // const [foodItem, setFoodItem] = useState({})
     const [serving, setServing] = useState(0)
     const dispatch = useDispatch()
 
@@ -51,14 +50,13 @@ const AddItem = () => {
     }
 
     const handleFoodFilter = (e) => {
-        // setFoodItem(JSON.parse(e.target.value))
         dispatch(changeFoodItem(JSON.parse(e.target.value)))
     }
 
     return(
         <Form onSubmit={addAnItem}>
             <select onChange={handleFoodFilter}>
-                {/* <option selected disabled>Select An Item</option> */}
+                {/* <option disabled >Select An Item</option> */}
                 {menu.map(food => (
                     <option key={food._id} value={JSON.stringify(food)}> {food.name} </option>
                 ))}

@@ -1,4 +1,4 @@
-import {PULL_MENU, EDIT_MENU_ITEM, REMOVE_ITEM_FROM_EDIT} from '../constants/menuConstants';
+import {PULL_MENU, EDIT_MENU_ITEM, REMOVE_ITEM_FROM_EDIT, CHANGE_FOOD_ITEM} from '../constants/menuConstants';
 const INITIAL_STATE = {menu: [], itemInEdit: {}, foodItem: {}}
 
 

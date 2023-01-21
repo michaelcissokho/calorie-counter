@@ -1,4 +1,4 @@
-import {ADD_TO_SUMMARY, REMOVE_FROM_SUMMARY} from '../constants/summaryConstants';
+import {ADD_TO_SUMMARY, INDUCT_SAVED_SUMMARY, REMOVE_FROM_SUMMARY} from '../constants/summaryConstants';
 const INITIAL_STATE = {summary: {'calories':0, 'protein': 0, 'carbs': 0}}
 
 function summaryReducer(state=INITIAL_STATE, action){
@@ -11,7 +11,7 @@ function summaryReducer(state=INITIAL_STATE, action){
             protein+=addedItem.protein;
             carbs+=addedItem.carbs;
 
-            return{...state, summary:{'calories': Math.round(calories), 'protein': Math.round(protein), 'carbs': Math.round(carbs)}};
+            return{...state, summary:{'calories': calories, 'protein': protein, 'carbs': carbs}};
 
         case REMOVE_FROM_SUMMARY:
             let removedItem = action.item
@@ -24,8 +24,11 @@ function summaryReducer(state=INITIAL_STATE, action){
             pro-=removedItem.protein;
             crbs-=removedItem.carbs;
 
-            return{...state, summary:{'calories':Math.round(cals), 'protein':Math.round(pro), 'carbs': Math.round(crbs)}};
+            return{...state, summary:{'calories': cals, 'protein': pro, 'carbs': crbs}};
 
+        case INDUCT_SAVED_SUMMARY:
+            
+            return {...state, summary: {'calories': action.calories, 'protein': action.protein, 'carbs': action.carbs }}
         default:
             return state;
     }
