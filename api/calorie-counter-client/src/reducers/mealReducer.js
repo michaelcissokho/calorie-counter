@@ -1,6 +1,6 @@
-import {ADD_ITEM, CHANGE_EDIT_ITEM, REMOVE_ITEM, START_EDIT, END_EDIT, EDIT_MEAL, INDUCT_SAVED_MEAL } from '../constants/mealConstants';
+import {ADD_ITEM, CHANGE_EDIT_ITEM, REMOVE_ITEM, START_EDIT, END_EDIT, EDIT_MEAL, INDUCT_SAVED_MEAL, RESET_MEAL } from '../constants/mealConstants';
 
-const INITIAL_STATE = {meal: [], foodItem: {}}
+const INITIAL_STATE = {meal: [], foodItem: {}, reuseID: ''}
 
 function mealReducer(state=INITIAL_STATE, action){
     switch(action.type){
@@ -10,19 +10,12 @@ function mealReducer(state=INITIAL_STATE, action){
         
         case REMOVE_ITEM:
 
-            return {...state, meal: state.meal.filter(item => item.id !== action.id)}
+            return {...state, meal: state.meal.filter(item => item.menu_id !== action.id)}
         
         case INDUCT_SAVED_MEAL:
             const savedMeal = action.meal
 
-            for (let item of savedMeal){
-                item['id'] = item['_id']
-                delete item._id
-            }
-
-            console.log(savedMeal)
-
-            return {...state, meal: savedMeal}
+            return {...state, meal: savedMeal, reuseID: action.id}
 
         case START_EDIT:
 
@@ -35,7 +28,7 @@ function mealReducer(state=INITIAL_STATE, action){
         case EDIT_MEAL:
             const m = [...state.meal]
 
-            const idx = m.findIndex((item) => item.id === action.originalId)
+            const idx = m.findIndex((item) => item.menu_id === action.originalId)
 
             if (idx === -1){
                 alert("Error updating item, Item ID not found")
@@ -49,6 +42,10 @@ function mealReducer(state=INITIAL_STATE, action){
         case END_EDIT:
 
             return {...state, foodItem: {}}
+        
+        case RESET_MEAL:
+
+            return INITIAL_STATE
 
         default:
             return state;

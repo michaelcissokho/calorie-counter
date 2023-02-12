@@ -1,10 +1,18 @@
-import { ADD_TO_SUMMARY, INDUCT_SAVED_SUMMARY, REMOVE_FROM_SUMMARY } from "../constants/summaryConstants";
+import { ADD_TO_SUMMARY, INDUCT_SAVED_SUMMARY, REMOVE_FROM_SUMMARY, RESET_SUMMARY } from "../constants/summaryConstants";
 
 export function addToSummary(item){
     return(
         {
             type: ADD_TO_SUMMARY,
             item
+        }
+    )
+}
+
+export function resetSummary(){
+    return(
+        {
+            type: RESET_SUMMARY
         }
     )
 }

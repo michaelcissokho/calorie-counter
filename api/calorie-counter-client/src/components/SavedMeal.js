@@ -21,13 +21,12 @@ const ItemList = styled.div`
 `;
 
 const SavedMeal = ({meal}) => {
-    
     const navigate = useNavigate()
 
     const dispatch = useDispatch()
 
     const editSavedMeal = () => {
-        dispatch(inductSavedMeal(meal.items))
+        dispatch(inductSavedMeal(meal.items, meal._id))
         dispatch(inductSavedSummary(meal.summary[0]))
         navigate('/')
     }

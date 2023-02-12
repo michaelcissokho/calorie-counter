@@ -4,6 +4,7 @@ const express = require('express')
 const router = express.Router()
 const Meal = require('../models/Meal')
 const {makeAMeal} = require('../methods/mealMethods')
+const { report } = require('process')
 
 router.get('/', async function(req,res,next){
     try {
@@ -26,6 +27,7 @@ router.get('/:id', async function(req,res,next){
 router.post('/', async function(req,res,next){
     try {
         const report = makeAMeal(req.body)
+
         const meal = new Meal({items: report.items, summary: report.summary});
         const newMeal = await meal.save();
 
@@ -40,7 +42,7 @@ router.put('/:id', async function(req,res,next){
         const report = makeAMeal(req.body)
         const item = await Meal.findByIdAndUpdate(req.params.id,
             {
-                $set: {items: report.items, summary: report.summary}
+                $set: req.body
             }, {new: true})
 
         return res.json(item)

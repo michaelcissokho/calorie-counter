@@ -8,7 +8,8 @@ const MealSchema = new mongoose.Schema({
             unit: {type: String, required: true},
             calories: {type: Number, required: true},
             protein: {type: Number, required: true},
-            carbs: {type: Number, required: true}
+            carbs: {type: Number, required: true},
+            menu_id: {type: String, required: true}
         }
     ],
     summary: [

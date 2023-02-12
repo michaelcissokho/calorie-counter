@@ -42,11 +42,11 @@ const EditMealItem = ({weight, oldItem, setEditing}) => {
         e.preventDefault()
 
         const {name, calories, protein, carbs, unit} = foodItem
-        const i = {'item': name, 'calories': roundTwoDigits(calories * serving), 'protein': roundTwoDigits(protein * serving), 'carbs': roundTwoDigits(carbs * serving), unit, serving, id:foodItem._id}
+        const i = {'item': name, 'calories': roundTwoDigits(calories * serving), 'protein': roundTwoDigits(protein * serving), 'carbs': roundTwoDigits(carbs * serving), unit, serving, menu_id :foodItem._id}
         
         dispatch(removeFromSummary(oldItem))
         dispatch(addToSummary(i));
-        dispatch(editMeal(oldItem.id, i));
+        dispatch(editMeal(oldItem.menu_id, i));
         exitEdit()
 
         document.getElementById(`meal-item-${foodItem._id}`).reset() //reset form

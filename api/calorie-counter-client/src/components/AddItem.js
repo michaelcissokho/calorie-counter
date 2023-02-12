@@ -40,7 +40,7 @@ const AddItem = () => {
         e.preventDefault()
 
         const {name, calories, protein, carbs, unit } = foodItem
-        const i = {'item': name, 'calories': roundTwoDigits(calories*serving), 'protein': roundTwoDigits(protein*serving), 'carbs': roundTwoDigits(carbs*serving), unit, serving, id: foodItem._id}
+        const i = {'item': name, 'calories': roundTwoDigits(calories*serving), 'protein': roundTwoDigits(protein*serving), 'carbs': roundTwoDigits(carbs*serving), unit, serving, menu_id: foodItem._id}
         
         dispatch(addToSummary(i));
         dispatch(addItem(i));

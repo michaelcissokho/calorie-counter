@@ -11,12 +11,11 @@ const EditButton = styled.button`
 
 const MealItem = ({item}) => {
     const [editing, setEditing] = useState(false)
-    console.log(item)
 
     const dispatch = useDispatch()
 
     const editItem = () => {
-        dispatch(generateBaseItem(item.id))
+        dispatch(generateBaseItem(item.menu_id))
         setEditing(true)
     }
 
@@ -31,7 +30,7 @@ const MealItem = ({item}) => {
             :<li> 
                 {item.item} ({item.serving} {item.unit}) ---- calories: {Math.round(item.calories)}, protein: {Math.round(item.protein)}g, carbs: {Math.round(item.carbs)}g
                 <EditButton onClick={editItem}> Edit </EditButton>
-                <button  onClick={() => deleteItem(item.id)}> Delete </button>
+                <button  onClick={() => deleteItem(item.menu_id)}> Delete </button>
             </li>}
         </div>
     )

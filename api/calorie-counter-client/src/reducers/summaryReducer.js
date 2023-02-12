@@ -1,4 +1,4 @@
-import {ADD_TO_SUMMARY, INDUCT_SAVED_SUMMARY, REMOVE_FROM_SUMMARY} from '../constants/summaryConstants';
+import {ADD_TO_SUMMARY, INDUCT_SAVED_SUMMARY, REMOVE_FROM_SUMMARY, RESET_SUMMARY} from '../constants/summaryConstants';
 const INITIAL_STATE = {summary: {'calories':0, 'protein': 0, 'carbs': 0}}
 
 function summaryReducer(state=INITIAL_STATE, action){
@@ -29,6 +29,9 @@ function summaryReducer(state=INITIAL_STATE, action){
         case INDUCT_SAVED_SUMMARY:
             
             return {...state, summary: {'calories': action.calories, 'protein': action.protein, 'carbs': action.carbs }}
+        case RESET_SUMMARY:
+
+            return INITIAL_STATE;
         default:
             return state;
     }
