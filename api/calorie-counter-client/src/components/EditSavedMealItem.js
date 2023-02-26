@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {getMenu} from '../actions/menuActions';
 import styled from 'styled-components'
 import { isEqual } from 'lodash';
-import { setFoodItem, editMealInEditor, clearFoodItem } from '../actions/savedMealActions';
+import { setFoodItem, clearFoodItem, changeItemInSavedMeal } from '../actions/savedMealActions';
 
 const Form = styled.form`
     display: flex;
@@ -43,7 +43,7 @@ const EditSavedMealItem = ({weight, oldItem, setEditing}) => {
         const {name, calories, protein, carbs, unit} = foodItem
         const i = {'item': name, 'calories': roundTwoDigits(calories * serving), 'protein': roundTwoDigits(protein * serving), 'carbs': roundTwoDigits(carbs * serving), unit, serving, menu_id :foodItem._id}
 
-        dispatch(editMealInEditor(oldItem, i));
+        dispatch(changeItemInSavedMeal(oldItem, i));
         exitEdit()
 
         document.getElementById(`meal-item-${foodItem._id}`).reset() //reset form

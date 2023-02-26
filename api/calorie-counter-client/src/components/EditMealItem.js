@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {addToSummary, removeFromSummary} from '../actions/summaryActions';
-import {changeEditItem, endEdit, editMeal} from '../actions/mealActions';
+import {setFood_Item, endEdit, editMeal} from '../actions/mealActions';
 import {getMenu} from '../actions/menuActions';
 import styled from 'styled-components'
 import { isEqual } from 'lodash';
@@ -53,7 +53,7 @@ const EditMealItem = ({weight, oldItem, setEditing}) => {
     }
 
     const handleFoodFilter = (e) => {
-        dispatch(changeEditItem(JSON.parse(e.target.value)))
+        dispatch(setFood_Item(JSON.parse(e.target.value)))
     }
 
     const adjustServing = (e) => {

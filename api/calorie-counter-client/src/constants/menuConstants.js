@@ -1,4 +1,4 @@
-export const PULL_MENU = "PULL_MENU"
+export const SET_MENU = "SET_MENU"
 export const EDIT_MENU_ITEM = "EDIT_MENU_ITEM"
 export const REMOVE_ITEM_FROM_EDIT = "REMOVE_ITEM_FROM_EDIT"
 export const CHANGE_FOOD_ITEM = "CHANGE_FOOD_ITEM"

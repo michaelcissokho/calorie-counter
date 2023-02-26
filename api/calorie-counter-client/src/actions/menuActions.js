@@ -1,11 +1,20 @@
 import axios from 'axios'; 
-import {PULL_MENU, REMOVE_ITEM_FROM_EDIT, CHANGE_FOOD_ITEM} from '../constants/menuConstants'
+import {REMOVE_ITEM_FROM_EDIT, CHANGE_FOOD_ITEM, SET_MENU} from '../constants/menuConstants'
 
 export function getMenu(){
     return async function(dispatch){
         let res = await axios.get('http://localhost:5000/foods/');
-        dispatch(pullMenu(res.data))
+        dispatch(setMenu(res.data))
     }
+}
+
+function setMenu(menu){
+    return(
+        {
+            type:SET_MENU,
+            menu
+        }
+    )
 }
 
 export function addToMenu(item){
@@ -53,12 +62,5 @@ export function changeFoodItem(newItem){
     )
 }
 
-function pullMenu(menu){
-    return(
-        {
-            type:PULL_MENU,
-            menu
-        }
-    )
-}
+
 

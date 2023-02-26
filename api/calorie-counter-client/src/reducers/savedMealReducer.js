@@ -1,10 +1,10 @@
-import {PULL_MEAL_HISTORY, EDIT_MEAL_IN_EDITOR, CLEAR_EDITOR, SEED_EDITOR, ADD_TO_EDITOR, REMOVE_FROM_EDITOR, SET_FOODITEM, CLEAR_FOOD_ITEM} from '../constants/savedMealConstants';
+import {SET_MEAL_HISTORY, SEED_EDITOR, ADD_TO_EDITOR, REMOVE_FROM_EDITOR, SET_FOODITEM, CHANGE_ITEM_IN_SAVED_MEAL, CLEAR_FOOD_ITEM, CLEAR_EDITOR} from '../constants/savedMealConstants';
 
 const INITIAL_STATE = {mealHistory: [],  editor: {meal:[], summary: {'calories': 0, 'protein': 0, 'carbs': 0}, id:'', foodItem: {}}}
 
 function savedMealReducer(state=INITIAL_STATE, action){
     switch(action.type){
-        case PULL_MEAL_HISTORY:
+        case SET_MEAL_HISTORY:
             return {...state, mealHistory: action.history}
         
         case SEED_EDITOR:
@@ -40,7 +40,7 @@ function savedMealReducer(state=INITIAL_STATE, action){
 
             return {...state, editor:{...state.editor, foodItem: action.item}}
         
-        case EDIT_MEAL_IN_EDITOR:
+        case CHANGE_ITEM_IN_SAVED_MEAL:
             const {oldItem, newItem} = action
             const m = [...state.editor.meal]
 

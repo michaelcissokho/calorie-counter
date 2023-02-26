@@ -1,5 +1,5 @@
 import axios from "axios"
-import {CLEAR_EDITOR, PULL_MEAL_HISTORY, REMOVE_FROM_EDITOR, SEED_EDITOR, ADD_TO_EDITOR, SET_FOODITEM, CLEAR_FOOD_ITEM, EDIT_MEAL_IN_EDITOR} from '../constants/savedMealConstants'
+import {CLEAR_EDITOR, SET_MEAL_HISTORY, REMOVE_FROM_EDITOR, SEED_EDITOR, ADD_TO_EDITOR, SET_FOODITEM, CLEAR_FOOD_ITEM, CHANGE_ITEM_IN_SAVED_MEAL} from '../constants/savedMealConstants'
 
 export function getMealHistory(){
     return async function(dispatch){
@@ -16,23 +16,10 @@ export function getMealHistory(){
 export function setMealHistory(history){
     return (
         {
-            type: PULL_MEAL_HISTORY,
+            type: SET_MEAL_HISTORY,
             history
         }
     )
-}
-
-export function editSavedMeal(id, meal, summary){
-    return async function(dispatch){
-        try {
-            await axios.put(`http://localhost:5000/meals/${id}`, {items: meal, summary})
-            dispatch(getMealHistory())
-            dispatch({type: CLEAR_EDITOR})
-            alert(`Meal ${id} has been updated`)
-        } catch (err) {
-            alert('Problem Updating Meal. See Console For Details.')
-        }
-    }
 }
 
 export function deleteMealFromHistory(id){
@@ -47,10 +34,16 @@ export function deleteMealFromHistory(id){
     }
 }
 
-export function generateBaseItem_(id){
-    return async function getBaseItem(dispatch){
-        let res = await axios.get(`http://localhost:5000/foods/${id}`)
-        dispatch(setFoodItem(res.data))
+export function editSavedMeal(id, meal, summary){
+    return async function(dispatch){
+        try {
+            await axios.put(`http://localhost:5000/meals/${id}`, {items: meal, summary})
+            dispatch(getMealHistory())
+            dispatch({type: CLEAR_EDITOR})
+            alert(`Meal ${id} has been updated`)
+        } catch (err) {
+            alert('Problem Updating Meal. See Console For Details.')
+        }
     }
 }
 
@@ -84,6 +77,13 @@ export function removeFromEditor(id, item){
     )
 }
 
+export function generateBaseItem_(id){
+    return async function getBaseItem(dispatch){
+        let res = await axios.get(`http://localhost:5000/foods/${id}`)
+        dispatch(setFoodItem(res.data))
+    }
+}
+
 export function setFoodItem(item){
     return (
         {
@@ -93,10 +93,10 @@ export function setFoodItem(item){
     )
 }
 
-export function editMealInEditor(oldItem, newItem){
+export function changeItemInSavedMeal(oldItem, newItem){
     return(
         {
-            type: EDIT_MEAL_IN_EDITOR,
+            type: CHANGE_ITEM_IN_SAVED_MEAL,
             oldItem,
             newItem
         }

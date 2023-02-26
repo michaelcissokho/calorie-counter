@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {ADD_ITEM, REMOVE_ITEM, START_EDIT, END_EDIT, CHANGE_EDIT_ITEM,  EDIT_MEAL, RESET_MEAL} from '../constants/mealConstants';
+import {ADD_ITEM, REMOVE_ITEM, SET_FOOD_ITEM, END_EDIT, EDIT_MEAL, RESET_MEAL} from '../constants/mealConstants';
 
 export function addItem(item, coreItem){
     return (
@@ -23,23 +23,14 @@ export function removeItem(id){
 export function generateBaseItem(id){
     return async function getBaseItem(dispatch){
         let res = await axios.get(`http://localhost:5000/foods/${id}`)
-        dispatch(startEdit(res.data))
+        dispatch(setFood_Item(res.data))
     }
 }
 
-function startEdit(item){
+export function setFood_Item(item){
     return (
         {
-            type: START_EDIT,
-            item
-        }
-    )
-}
-
-export function changeEditItem(item){
-    return (
-        {
-            type: CHANGE_EDIT_ITEM,
+            type: SET_FOOD_ITEM,
             item
         }
     )

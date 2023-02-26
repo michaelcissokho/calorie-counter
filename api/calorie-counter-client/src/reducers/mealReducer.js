@@ -1,4 +1,4 @@
-import {ADD_ITEM, CHANGE_EDIT_ITEM, REMOVE_ITEM, START_EDIT, END_EDIT, EDIT_MEAL, RESET_MEAL } from '../constants/mealConstants';
+import {ADD_ITEM, REMOVE_ITEM, SET_FOOD_ITEM, END_EDIT, EDIT_MEAL, RESET_MEAL } from '../constants/mealConstants';
 
 const INITIAL_STATE = {meal: [], foodItem: {}}
 
@@ -12,12 +12,8 @@ function mealReducer(state=INITIAL_STATE, action){
 
             return {...state, meal: state.meal.filter(item => item.menu_id !== action.id)}
 
-        case START_EDIT:
+        case SET_FOOD_ITEM:
 
-            return {...state, foodItem: action.item}
-
-        case CHANGE_EDIT_ITEM:
-            
             return {...state, foodItem: action.item}
 
         case EDIT_MEAL:
