@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { updateMenu } from '../actions/menuActions';
+import { updateMenu } from '../api/calorie-counter-client/src/actions/menuActions';
 import { isEqual } from 'lodash';
 
 //THIS IS COPY AND PASTED FROM EDIT MENU ITEM COMPONENT

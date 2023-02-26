@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {ADD_ITEM, REMOVE_ITEM, START_EDIT, END_EDIT, CHANGE_EDIT_ITEM,  EDIT_MEAL, INDUCT_SAVED_MEAL, RESET_MEAL} from '../constants/mealConstants';
+import {ADD_ITEM, REMOVE_ITEM, START_EDIT, END_EDIT, CHANGE_EDIT_ITEM,  EDIT_MEAL, RESET_MEAL} from '../constants/mealConstants';
 
 export function addItem(item, coreItem){
     return (
@@ -19,16 +19,6 @@ export function removeItem(id){
         }
     )
 };
-
-export function inductSavedMeal(meal, id){
-    return(
-        {
-            type: INDUCT_SAVED_MEAL,
-            meal,
-            id
-        }   
-    )
-}
 
 export function generateBaseItem(id){
     return async function getBaseItem(dispatch){

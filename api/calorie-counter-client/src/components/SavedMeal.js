@@ -2,9 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import {useDispatch} from 'react-redux';
-import { deleteMealFromHistory } from '../actions/savedMealActions';
-import { inductSavedMeal } from '../actions/mealActions';
-import { inductSavedSummary } from '../actions/summaryActions';
+import { deleteMealFromHistory, seedEditor } from '../actions/savedMealActions';
 
 const MealDiv = styled.div`
     margin: auto;
@@ -21,14 +19,13 @@ const ItemList = styled.div`
 `;
 
 const SavedMeal = ({meal}) => {
-    const navigate = useNavigate()
 
+    const navigate = useNavigate()
     const dispatch = useDispatch()
 
     const editSavedMeal = () => {
-        dispatch(inductSavedMeal(meal.items, meal._id))
-        dispatch(inductSavedSummary(meal.summary[0]))
-        navigate('/')
+        dispatch(seedEditor(meal.items, meal._id, meal.summary[0]))
+        navigate('/edit-saved-meal')
     }
 
     return (

@@ -1,6 +1,6 @@
-import {ADD_ITEM, CHANGE_EDIT_ITEM, REMOVE_ITEM, START_EDIT, END_EDIT, EDIT_MEAL, INDUCT_SAVED_MEAL, RESET_MEAL } from '../constants/mealConstants';
+import {ADD_ITEM, CHANGE_EDIT_ITEM, REMOVE_ITEM, START_EDIT, END_EDIT, EDIT_MEAL, RESET_MEAL } from '../constants/mealConstants';
 
-const INITIAL_STATE = {meal: [], foodItem: {}, reuseID: ''}
+const INITIAL_STATE = {meal: [], foodItem: {}}
 
 function mealReducer(state=INITIAL_STATE, action){
     switch(action.type){
@@ -11,11 +11,6 @@ function mealReducer(state=INITIAL_STATE, action){
         case REMOVE_ITEM:
 
             return {...state, meal: state.meal.filter(item => item.menu_id !== action.id)}
-        
-        case INDUCT_SAVED_MEAL:
-            const savedMeal = action.meal
-
-            return {...state, meal: savedMeal, reuseID: action.id}
 
         case START_EDIT:
 

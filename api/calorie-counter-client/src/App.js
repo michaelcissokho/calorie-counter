@@ -4,6 +4,7 @@ import MealHistory from './pages/MealHistory';
 import Menu from './pages/Menu';
 import { Route, Routes, Link } from 'react-router-dom';
 import EditMenuItem from './components/EditMenuItem';
+import SavedMealEditor from './pages/SavedMealEditor';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route exact path="/menu" element={<Menu/>}/>
         <Route exact path="/saved-meals" element={<MealHistory/>}/>
         <Route exact path="/edit-menu-item" element={<EditMenuItem/>}/>
+        <Route exact path="/edit-saved-meal" element={<SavedMealEditor/>}/>
       </Routes>
     </div>
   );
