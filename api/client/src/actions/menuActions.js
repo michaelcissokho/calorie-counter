@@ -1,9 +1,11 @@
 import axios from 'axios'; 
 import {REMOVE_ITEM_FROM_EDIT, CHANGE_FOOD_ITEM, SET_MENU} from '../constants/menuConstants'
 
+const BASE_URL = process.env.NODE_ENV === 'production' ? 'https://calorific.herokuapp.com' : 'http://localhost:5000';
+
 export function getMenu(){
     return async function(dispatch){
-        let res = await axios.get('http://localhost:5000/foods/');
+        let res = await axios.get(`${BASE_URL}/foods/`);
         dispatch(setMenu(res.data))
     }
 }
@@ -20,7 +22,7 @@ function setMenu(menu){
 export function addToMenu(item){
     return async function(dispatch){
         try {
-            await axios.post('http://localhost:5000/foods/', item)
+            await axios.post(`${BASE_URL}/foods/`, item)
             dispatch(getMenu())
         } catch (err) {
             alert('Error Uploading Food Item. See Console.')
@@ -32,7 +34,7 @@ export function addToMenu(item){
 export function updateMenu(item, id){
     return async function(dispatch){
         try {
-            await axios.put(`http://localhost:5000/foods/${id}`, item)
+            await axios.put(`${BASE_URL}/foods/${id}`, item)
             dispatch({type: REMOVE_ITEM_FROM_EDIT })
         } catch (err) {
             alert('Error updating menu item. See console.')
@@ -44,7 +46,7 @@ export function updateMenu(item, id){
 export function deleteFromMenu(id){
     return async function(dispatch){
         try {
-            await axios.delete(`http://localhost:5000/foods/${id}`)
+            await axios.delete(`${BASE_URL}/foods/${id}`)
             dispatch(getMenu())
         } catch (err) {
             alert('Error Deleting Food Item. See Console.')

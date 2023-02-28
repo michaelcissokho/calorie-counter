@@ -1,10 +1,12 @@
 import axios from "axios"
 import {CLEAR_EDITOR, SET_MEAL_HISTORY, REMOVE_FROM_EDITOR, SEED_EDITOR, ADD_TO_EDITOR, SET_FOODITEM, CLEAR_FOOD_ITEM, CHANGE_ITEM_IN_SAVED_MEAL} from '../constants/savedMealConstants'
 
+const BASE_URL = process.env.NODE_ENV === 'production' ? 'https://calorific.herokuapp.com' : 'http://localhost:5000';
+
 export function getMealHistory(){
     return async function(dispatch){
         try {
-            let res = await axios.get('http://localhost:5000/meals/')
+            let res = await axios.get(`${BASE_URL}/meals/`)
             dispatch(setMealHistory(res.data.reverse()))
         } catch (err) {
             alert('Problem Pulling History')
@@ -25,7 +27,7 @@ export function setMealHistory(history){
 export function deleteMealFromHistory(id){
     return async function (dispatch){
         try {
-            await axios.delete(`http://localhost:5000/meals/${id}`)
+            await axios.delete(`${BASE_URL}/meals/${id}`)
             dispatch(getMealHistory())
         } catch (err) {
             alert('Problem Deleting Meal')
@@ -37,7 +39,7 @@ export function deleteMealFromHistory(id){
 export function editSavedMeal(id, meal, summary){
     return async function(dispatch){
         try {
-            await axios.put(`http://localhost:5000/meals/${id}`, {items: meal, summary})
+            await axios.put(`${BASE_URL}/meals/${id}`, {items: meal, summary})
             dispatch(getMealHistory())
             dispatch({type: CLEAR_EDITOR})
             alert(`Meal ${id} has been updated`)
@@ -79,7 +81,7 @@ export function removeFromEditor(id, item){
 
 export function generateBaseItem_(id){
     return async function getBaseItem(dispatch){
-        let res = await axios.get(`http://localhost:5000/foods/${id}`)
+        let res = await axios.get(`${BASE_URL}/foods/${id}`)
         dispatch(setFoodItem(res.data))
     }
 }
