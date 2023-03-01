@@ -2,7 +2,6 @@ import axios from 'axios';
 import {REMOVE_ITEM_FROM_EDIT, CHANGE_FOOD_ITEM, SET_MENU} from '../constants/menuConstants'
 
 const BASE_URL = process.env.NODE_ENV === 'production' ? 'https://calorific.herokuapp.com' : 'http://localhost:5000';
-console.log('NODE ENVIRONMENT', process.env.NODE_ENV, 'URL', BASE_URL)
 
 export function getMenu(){
     return async function(dispatch){
