@@ -9,7 +9,7 @@ const Button = styled.button`
     margin-top: 25px;
 `;
 
-const BASE_URL = process.env.NODE_ENV === 'production' ? 'https://calorific.herokuapp.com' : 'http://localhost:5000';
+const API_URL = process.env.NODE_ENV === 'production' ? 'https://calorific.herokuapp.com' : 'http://localhost:5000';
 
 const Meal = () => {
     const {calories, protein, carbs} = useSelector(state => state.summary.summary);
@@ -17,7 +17,7 @@ const Meal = () => {
 
     const saveMeal = async (e) => {
         try {
-            await axios.post(`${BASE_URL}/meals/`, {items: meal})
+            await axios.post(`${API_URL}/meals/`, {items: meal})
             alert('Meal Saved')
         } catch (err) {
             alert('Problem Saving Meal')
