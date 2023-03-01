@@ -7,6 +7,7 @@ console.log('NODE ENVIRONMENT', process.env.NODE_ENV, 'URL', BASE_URL)
 export function getMenu(){
     return async function(dispatch){
         let res = await axios.get(`${BASE_URL}/foods/`);
+        console.log('NODE ENVIRONMENT', process.env.NODE_ENV, 'URL', BASE_URL)
         dispatch(setMenu(res.data))
     }
 }
