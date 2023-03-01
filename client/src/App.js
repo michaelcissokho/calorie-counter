@@ -7,7 +7,6 @@ import EditMenuItem from './components/EditMenuItem';
 import SavedMealEditor from './pages/SavedMealEditor';
 
 function App() {
-  console.log(process.env.NODE_ENV)
   return (
     <div className="App">
       <nav>
