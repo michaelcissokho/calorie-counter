@@ -5,6 +5,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import styled from 'styled-components';
 import axios from 'axios';
 import { resetMeal } from '../actions/mealActions';
+import { resetSummary } from '../actions/summaryActions';
 
 const Button = styled.button`
     margin-top: 25px;
@@ -23,6 +24,7 @@ const Meal = () => {
             await axios.post(`${API_URL}/meals/`, {items: meal})
             alert('Meal Saved')
             dispatch(resetMeal())
+            dispatch(resetSummary())
         } catch (err) {
             alert('Problem Saving Meal')
         }
