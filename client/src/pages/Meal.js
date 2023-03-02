@@ -1,9 +1,10 @@
 import React from 'react';
 import MealItem from '../components/MealItem'
 import AddItem from '../components/AddItem'
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import styled from 'styled-components';
 import axios from 'axios';
+import { resetMeal } from '../actions/mealActions';
 
 const Button = styled.button`
     margin-top: 25px;
@@ -15,10 +16,13 @@ const Meal = () => {
     const {calories, protein, carbs} = useSelector(state => state.summary.summary);
     const {meal} = useSelector(state => state.meal);
 
+    const dispatch = useDispatch()
+
     const saveMeal = async (e) => {
         try {
             await axios.post(`${API_URL}/meals/`, {items: meal})
             alert('Meal Saved')
+            dispatch(resetMeal())
         } catch (err) {
             alert('Problem Saving Meal')
         }

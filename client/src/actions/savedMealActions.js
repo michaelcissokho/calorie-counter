@@ -29,6 +29,7 @@ export function deleteMealFromHistory(id){
         try {
             await axios.delete(`${API_URL}/meals/${id}`)
             dispatch(getMealHistory())
+            alert(`Meal ${id} has been deleted from history`)
         } catch (err) {
             alert('Problem Deleting Meal')
             console.log(err)
