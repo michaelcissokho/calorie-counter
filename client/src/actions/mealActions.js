@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {ADD_ITEM, REMOVE_ITEM, SET_FOOD_ITEM, END_EDIT, EDIT_MEAL, RESET_MEAL} from '../constants/mealConstants';
 
-const BASE_URL = process.env.NODE_ENV === 'production' ? 'https://calorific.herokuapp.com' : 'http://localhost:5000';
+const API_URL = process.env.NODE_ENV === 'production' ? 'https://calorific.herokuapp.com' : 'http://localhost:5000';
 
 export function addItem(item, coreItem){
     return (
@@ -24,7 +24,7 @@ export function removeItem(id){
 
 export function generateBaseItem(id){
     return async function getBaseItem(dispatch){
-        let res = await axios.get(`${BASE_URL}/foods/${id}`)
+        let res = await axios.get(`${API_URL}/foods/${id}`)
         dispatch(setFood_Item(res.data))
     }
 }
