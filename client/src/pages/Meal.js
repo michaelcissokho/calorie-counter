@@ -5,6 +5,8 @@ import {useSelector, useDispatch} from 'react-redux';
 import styled from 'styled-components';
 import axios from 'axios';
 import { mobile } from '../responsive';
+import { resetMeal } from '../actions/mealActions';
+import { resetSummary } from '../actions/summaryActions';
 
 const Button = styled.button`
     margin-top: 25px;
