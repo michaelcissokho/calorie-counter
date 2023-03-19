@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import {useDispatch} from 'react-redux';
 import { deleteMealFromHistory, seedEditor } from '../actions/savedMealActions';
+import { mobile } from '../responsive';
 
 const MealDiv = styled.div`
     margin: auto;
@@ -10,6 +11,9 @@ const MealDiv = styled.div`
     border-style: solid;
     width: 30%;
     overflow: auto;
+    ${mobile({
+        width: '90%'
+    })}
 `;
 
 const ItemList = styled.div`

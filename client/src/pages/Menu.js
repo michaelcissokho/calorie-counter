@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import {addToMenu, getMenu} from '../actions/menuActions';
 import { isEqual } from 'lodash';
 import MenuItem from '../components/MenuItem';
+import {mobile} from '../responsive';
 
 const AddItemForm = styled.form`
     justify-content: center;
@@ -25,6 +26,9 @@ const MenuList = styled.ul`
     overflow: auto;
     height: 500px;
     border-style: solid;
+    ${mobile({
+        width: '88%'
+    })}
 `;
 
 const Menu = () => {

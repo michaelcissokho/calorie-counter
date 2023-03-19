@@ -1,17 +1,21 @@
 import React, {useState, useEffect} from 'react';
-import {v4 as uuid} from 'uuid';
+// import {v4 as uuid} from 'uuid';
 import {useDispatch, useSelector} from 'react-redux';
 import {addToSummary} from '../actions/summaryActions';
 import {addItem} from '../actions/mealActions';
 import {getMenu, changeFoodItem} from '../actions/menuActions';
 import styled from 'styled-components';
 import { isEqual } from 'lodash';
-
+import {mobile} from '../responsive'
 
 const Form = styled.form`
     display: flex;
     justify-content: center;
     margin-top: 25px;
+    ${mobile({
+        width: '150%',
+        overflow: 'auto'
+    })}
 `;
 
 const Button = styled.button`

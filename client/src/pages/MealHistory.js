@@ -3,6 +3,21 @@ import SavedMeal from '../components/SavedMeal';
 import { getMealHistory } from '../actions/savedMealActions';
 import {useSelector, useDispatch} from 'react-redux';
 import _, {isEqual} from 'lodash';
+import {mobile} from '../responsive';
+import styled from 'styled-components';
+
+const History = styled.div`
+    list-style: none;
+    ${mobile({
+        width: '88%'
+    })}
+`
+
+const List = styled.ul`
+    ${mobile({
+        width: '95%'
+    })}
+`
 
 const MealHistory = () => {
     const {mealHistory} = useSelector(state => state.mealHistory, isEqual);
@@ -13,12 +28,12 @@ const MealHistory = () => {
     }, [dispatch])
 
     return (
-        <div>
+        <History>
             <h3 style={{textAlign: 'center', marginLeft: '40px'}}> Meal History </h3>
-            <ul style={{listStyle:'none'}}>
+            <List style={{listStyle:'none'}}>
                 {mealHistory.map(meal => <SavedMeal key={meal._id} meal={meal}/>)}
-            </ul>
-        </div>
+            </List>
+        </History>
     )
 }
 
