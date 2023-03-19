@@ -1,7 +1,7 @@
 import axios from "axios"
 import {CLEAR_EDITOR, SET_MEAL_HISTORY, REMOVE_FROM_EDITOR, SEED_EDITOR, ADD_TO_EDITOR, SET_FOODITEM, CLEAR_FOOD_ITEM, CHANGE_ITEM_IN_SAVED_MEAL} from '../constants/savedMealConstants'
 
-const API_URL = process.env.NODE_ENV === 'production' ? 'https://calorific.herokuapp.com' : 'http://localhost:5000';
+const API_URL = process.env.NODE_ENV === 'production' ? 'https://calorific.herokuapp.com' : 'http://localhost:5001';
 
 export function getMealHistory(){
     return async function(dispatch){
@@ -29,6 +29,7 @@ export function deleteMealFromHistory(id){
         try {
             await axios.delete(`${API_URL}/meals/${id}`)
             dispatch(getMealHistory())
+            alert(`Meal ${id} has been deleted from history`)
         } catch (err) {
             alert('Problem Deleting Meal')
             console.log(err)
