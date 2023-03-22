@@ -1,6 +1,6 @@
 {
-  "short_name": "Calorific",
-  "name": "Calorific",
+  "short_name": "React App",
+  "name": "Create React App Sample",
   "icons": [
     {
       "src": "favicon.ico",
