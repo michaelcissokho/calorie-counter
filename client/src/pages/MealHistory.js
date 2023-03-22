@@ -15,7 +15,7 @@ const History = styled.div`
 
 const List = styled.ul`
     ${mobile({
-        width: '95%'
+        width: '92%'
     })}
 `
 

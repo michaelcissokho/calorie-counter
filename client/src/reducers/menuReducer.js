@@ -1,4 +1,4 @@
-import {SET_MENU, EDIT_MENU_ITEM, REMOVE_ITEM_FROM_EDIT, CHANGE_FOOD_ITEM} from '../constants/menuConstants';
+import {SET_MENU, EDIT_MENU_ITEM, REMOVE_ITEM_FROM_EDIT, CHANGE_FOOD_ITEM, START_FROM_THE_TOP} from '../constants/menuConstants';
 const INITIAL_STATE = {menu: [], itemInEdit: {}, foodItem: {}}
 
 
@@ -12,6 +12,8 @@ function menuReducer(state = INITIAL_STATE, action){
             return {...state, itemInEdit: {} }
         case CHANGE_FOOD_ITEM:
             return {...state, foodItem: action.newItem}
+        case START_FROM_THE_TOP:
+            return {...state, foodItem: state.menu[0]}
         default:
             return state;
     }

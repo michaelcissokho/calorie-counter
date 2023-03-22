@@ -18,6 +18,14 @@ const MealDiv = styled.div`
     })}
 `
 
+const Items = styled.ul`
+    list-style: none;
+    ${mobile({
+        marginRight: '35px',
+        display: 'inline-block'
+    })}
+`
+
 const API_URL = process.env.NODE_ENV === 'production' ? 'https://calorific.herokuapp.com' : 'http://localhost:5001';
 
 const Meal = () => {
@@ -43,9 +51,9 @@ const Meal = () => {
 
             <div>
                 <h4>Items:</h4>
-                <ul style={{listStyle: "none"}}>
+                <Items>
                     {meal.map((item) => <MealItem key={item.menu_id} item={item} />)}
-                </ul>
+                </Items>
             </div>
             
             <div>

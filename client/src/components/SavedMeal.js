@@ -32,6 +32,10 @@ const SavedMeal = ({meal}) => {
         navigate('/edit-saved-meal')
     }
 
+        const roundTwoDigits = (value) => {
+        return Math.round(value* 100)/100
+    }
+
     return (
         <MealDiv>
             <ItemList>
@@ -48,9 +52,9 @@ const SavedMeal = ({meal}) => {
             </ItemList>
 
             <h3> Summary: </h3>
-            <h6> Calories: {meal.summary[0].calories} </h6>
-            <h6> Protein: {meal.summary[0].protein} g </h6>
-            <h6> Carbs: {meal.summary[0].carbs} g</h6>
+            <h6> Calories: {roundTwoDigits(meal.summary[0].calories)} </h6>
+            <h6> Protein: {roundTwoDigits(meal.summary[0].protein)} g </h6>
+            <h6> Carbs: {roundTwoDigits(meal.summary[0].carbs)} g</h6>
             <br></br>
 
             <h5> Last Updated: {meal.updatedAt} </h5>

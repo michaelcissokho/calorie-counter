@@ -7,6 +7,7 @@ import {getMenu, changeFoodItem} from '../actions/menuActions';
 import styled from 'styled-components';
 import { isEqual } from 'lodash';
 import {mobile} from '../responsive';
+import { START_FROM_THE_TOP } from '../constants/menuConstants';
 
 const Form = styled.form`
     display: flex;
@@ -66,6 +67,7 @@ const AddItem = () => {
         
         dispatch(addToSummary(i));
         dispatch(addItem(i));
+        dispatch({type: START_FROM_THE_TOP})
 
         document.querySelector('form').reset()
         setServing(0) 
