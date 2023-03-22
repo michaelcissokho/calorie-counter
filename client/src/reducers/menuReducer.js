@@ -7,9 +7,9 @@ function menuReducer(state = INITIAL_STATE, action){
         case SET_MENU:
             return {...state, menu: action.menu, foodItem: action.menu[0] }
         case EDIT_MENU_ITEM:
-            return {...state, itemInEdit: action.item, foodItem: action.menu[0] }
+            return {...state, itemInEdit: action.item }
         case REMOVE_ITEM_FROM_EDIT:
-            return {...state, itemInEdit: {}, foodItem: action.menu[0] }
+            return {...state, itemInEdit: {} }
         case CHANGE_FOOD_ITEM:
             return {...state, foodItem: action.newItem}
         default:

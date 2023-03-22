@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import { mobile } from '../responsive';
 
 const Item = styled.li`
+    margin-right: 25px;
     ${mobile({
         width: '90%'
     })}

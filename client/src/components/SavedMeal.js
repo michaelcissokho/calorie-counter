@@ -9,10 +9,10 @@ const MealDiv = styled.div`
     margin: auto;
     margin-bottom: 10px;
     border-style: solid;
-    width: 30%;
+    width: 20%;
     overflow: auto;
     ${mobile({
-        width: '90%'
+        width: '100%'
     })}
 `;
 

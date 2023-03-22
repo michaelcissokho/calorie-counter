@@ -19,6 +19,14 @@ const List = styled.ul`
     })}
 `
 
+const Header = styled.h3`
+    text-align: center;
+    margin-left: 25px;
+    ${mobile({
+        marginLeft: '60px'
+    })}
+`
+
 const MealHistory = () => {
     const {mealHistory} = useSelector(state => state.mealHistory, isEqual);
     const dispatch = useDispatch();
@@ -29,7 +37,7 @@ const MealHistory = () => {
 
     return (
         <History>
-            <h3 style={{textAlign: 'center', marginLeft: '40px'}}> Meal History </h3>
+            <Header> Meal History </Header>
             <List style={{listStyle:'none'}}>
                 {mealHistory.map(meal => <SavedMeal key={meal._id} meal={meal}/>)}
             </List>

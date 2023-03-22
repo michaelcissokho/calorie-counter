@@ -14,11 +14,11 @@ const Button = styled.button`
 
 const MealDiv = styled.div`
     ${mobile({
-        width: '80%'
+        // width: '80%'
     })}
 `
 
-const API_URL = process.env.NODE_ENV === 'production' ? 'https://calorific.herokuapp.com' : 'http://localhost:5000';
+const API_URL = process.env.NODE_ENV === 'production' ? 'https://calorific.herokuapp.com' : 'http://localhost:5001';
 
 const Meal = () => {
     const {calories, protein, carbs} = useSelector(state => state.summary.summary);
