@@ -39,7 +39,7 @@ router.post('/', async function(req,res,next){
 
 router.put('/:id', async function(req,res,next){
     try {
-        const report = makeAMeal(req.body)
+        // const report = makeAMeal(req.body)
         const item = await Meal.findByIdAndUpdate(req.params.id,
             {
                 $set: req.body
