@@ -36,6 +36,8 @@ const SavedMeal = ({meal}) => {
         return Math.round(value* 100)/100
     }
 
+    const localdate = new Date(meal.updatedAt).toLocaleString()
+
     return (
         <MealDiv>
             <ItemList>
@@ -57,7 +59,7 @@ const SavedMeal = ({meal}) => {
             <h6> Carbs: {roundTwoDigits(meal.summary[0].carbs)} g</h6>
             <br></br>
 
-            <h5> Last Updated: {meal.updatedAt} </h5>
+            <h5> Last Updated: {localdate} </h5>
             <button onClick={editSavedMeal}>Edit</button>
             <button style={{marginBottom: '10px'}} onClick={() => dispatch(deleteMealFromHistory(meal._id))}>Delete</button>
         </MealDiv>
